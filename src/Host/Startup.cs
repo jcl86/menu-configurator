@@ -10,49 +10,57 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 
 namespace MenuConfigurator.Host
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
+        private readonly IWebHostEnvironment environment;
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MenuConfigurator.Host", Version = "v1" });
-            });
+            Configuration = configuration;
+            this.environment = environment;
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
-            if (env.IsDevelopment())
+            Api.Configuration
+                .ConfigureServices(services, environment, Configuration)
+                .AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MenuConfiguratorApi", Version = "v1" });
+                })
+                .AddCustomDbContext(Configuration)
+                .AddCustomAuthentication(Configuration);
+        }
+
+        public void Configure(IApplicationBuilder app)
+        {
+            var allowedOrigins = Configuration.GetSection("AllowedOrigins").Get<IEnumerable<string>>();
+            Serilog.Log.Logger.Information("Origins: " + string.Join(", ", allowedOrigins));
+
+            Api.Configuration.Configure(app, host =>
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MenuConfigurator.Host v1"));
-            }
+                var builder = host
+                    .UseCors(policy =>
+                         policy.WithOrigins(allowedOrigins.ToArray())
+                         .AllowAnyMethod()
+                         .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization)
+                         .AllowCredentials())
+                    .UseDefaultFiles()
+                    .UseStaticFiles();
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+                if (environment.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseSwagger();
+                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MenuConfigurator Api"));
+                }
+                return builder;
             });
         }
     }

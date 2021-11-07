@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuConfigurator.Domain
 {
+    [Service]
     public class DishLister
     {
         private readonly IDishRepository dishRepository;
@@ -12,10 +14,10 @@ namespace MenuConfigurator.Domain
             this.dishRepository = dishRepository;
         }
         
-        public IEnumerable<Model.Dish> ToList()
+        public async Task<IEnumerable<Model.Dish>> ToList()
         {
-            var entities = dishRepository.GetAll();
-            var result = entities.Select(DishMapper.Map);
+            var entities = await dishRepository.GetAll();
+            var result = entities.Select(x => DishMapper.Map(x));
             return result;
         }
     }

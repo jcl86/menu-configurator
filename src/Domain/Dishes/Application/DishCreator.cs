@@ -3,6 +3,7 @@ using MenuConfigurator.Model;
 
 namespace MenuConfigurator.Domain
 {
+    [Service]
     public class DishCreator
     {
         private readonly IDishRepository dishRepository;
@@ -18,7 +19,7 @@ namespace MenuConfigurator.Domain
         {
             var entity = new Dish(dto.Id, dto.Title, dto.Ingredients, dto.NutritionalInfo, dto.Allergens, dto.ImagePath, dto.Type);
             await dishRepository.Add(entity);
-            await unitOfWork.Complete();
+            await unitOfWork.CompleteAsync();
             var dish = DishMapper.Map(entity);
             return dish;
         }

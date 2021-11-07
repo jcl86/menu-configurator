@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 namespace MenuConfigurator.Domain
 {
+    [Service]
     public class DishFinder
     {
         private readonly IDishRepository dishRepository;
@@ -14,7 +15,7 @@ namespace MenuConfigurator.Domain
 
         public async Task<Model.Dish> Find(Guid dishId)
         {
-            var entity = await Find(dishId);
+            var entity = await FindEntity(dishId);
             var dish = DishMapper.Map(entity);
             return dish;
         }

@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 namespace MenuConfigurator.Api
 {
-
     [ApiController, Route("api/dishes")]
     public class DishController : ControllerBase
     {
@@ -32,13 +31,14 @@ namespace MenuConfigurator.Api
             this.lister = lister;
         }
 
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Model.Dish>>> GetAll()
         {
-            var dishes = await lister.GetAll();
+            var dishes = await lister.ToList();
             return Ok(dishes);
         }
 
-        [Route("{dishId}")]
+        [HttpGet, Route("{dishId}")]
         public async Task<ActionResult<Model.Dish>> GetDish(Guid dishId)
         {
             var dish = await finder.Find(dishId);
@@ -49,7 +49,7 @@ namespace MenuConfigurator.Api
         public async Task<ActionResult<Model.Dish>> Post(CreateDish dish)
         {
             await creator.Create(dish);
-            return CreatedAtAction(nameof(GetDish), new { id = dish.Id }, dish);
+            return CreatedAtAction(nameof(GetDish), new { dishId = dish.Id }, dish);
         }
 
         [HttpPatch, Route("{dishId}")]

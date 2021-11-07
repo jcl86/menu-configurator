@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 namespace MenuConfigurator.Domain
 {
+    [Service]
     public class DishEraser
     {
         private readonly DishFinder finder;
@@ -23,7 +24,7 @@ namespace MenuConfigurator.Domain
         {
             var entity = await finder.FindEntity(dishId);
             dishRepository.Delete(entity);
-            await unitOfWork.Complete();
+            await unitOfWork.CompleteAsync();
         }
     }
 }

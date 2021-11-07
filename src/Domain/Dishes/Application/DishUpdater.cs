@@ -4,6 +4,7 @@ using MenuConfigurator.Model;
 
 namespace MenuConfigurator.Domain
 {
+    [Service]
     public class DishUpdater
     {
         private readonly DishFinder finder;
@@ -30,7 +31,7 @@ namespace MenuConfigurator.Domain
             entity.SetImagePath(dto.ImagePath);
             entity.SetType(dto.Type);
             dishRepository.Update(entity);
-            await unitOfWork.Complete();
+            await unitOfWork.CompleteAsync();
         }
     }
 }

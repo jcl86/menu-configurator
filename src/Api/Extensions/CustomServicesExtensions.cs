@@ -1,6 +1,4 @@
-﻿using Legacy.Pdf;
-using Legacy.Sales.Domain;
-using MenuConfigurator.Domain;
+﻿using MenuConfigurator.Domain;
 using MenuConfigurator.Infraestructure;
 using System;
 using System.Collections.Generic;

@@ -4,6 +4,6 @@ namespace MenuConfigurator.Domain
 {
     public interface IUnitOfWork 
     {
-        Task Complete();
+        Task CompleteAsync();
     }
 }

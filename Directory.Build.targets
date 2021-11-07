@@ -4,6 +4,7 @@
     <PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NugetNetVersion)" />
     <PackageReference Update="Microsoft.EntityFrameworkCore.Relational" Version="$(NugetNetVersion)" />
     <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NugetNetVersion)" />
+    <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(NugetNetVersion)"  />
     <PackageReference Update="Microsoft.Extensions.Configuration.UserSecrets" Version="$(NugetNetVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(NugetNetVersion)" />
     <PackageReference Update="System.Data.SqlClient" Version="4.8.1" />

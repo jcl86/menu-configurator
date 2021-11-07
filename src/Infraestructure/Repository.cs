@@ -4,7 +4,7 @@ namespace MenuConfigurator.Infraestructure
 {
     public class Repository<T> : Domain.IRepository<T> where T : class
     {
-        private readonly MenuContext context;
+        protected readonly MenuContext context;
 
         public Repository(MenuContext context)
         {
@@ -16,5 +16,4 @@ namespace MenuConfigurator.Infraestructure
         public void Update(T entity) => context.Set<T>().Update(entity);
 
     }
-
 }

@@ -3,23 +3,24 @@ using System.Linq;
 using System.Collections.Generic;
 using MenuConfigurator.Infraestructure;
 using System;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MenuConfigurator.Infraestructure
 {
     public class DishRepository : Repository<Dish>, IDishRepository
     {
-        private readonly MenuContext _context;
-
         public DishRepository(MenuContext context) : base(context) { }
 
-        public Dish GetById(Guid dishId)
+        public async Task<Dish> GetById(Guid dishId)
         {
-            return _context.Dishes.Find(dishId);
+            return await context.Dishes.FindAsync(dishId);
         }
 
-        public IEnumerable<Dish> GetAll()
+        public async Task<IEnumerable<Dish>> GetAll()
         {
-            return _context.Dishes.ToList();
+            var result = await context.Dishes.ToListAsync();
+            return result;
         }
     }
 }

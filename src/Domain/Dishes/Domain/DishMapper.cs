@@ -1,7 +1,10 @@
+using System;
+
 namespace MenuConfigurator.Domain
 {
     public static class DishMapper
     {
+        //public static Func<Dish, Model.Dish> MapFunction => (x) => Map(x);
         public static Model.Dish Map(Dish dish)
         {
             return new Model.Dish()
