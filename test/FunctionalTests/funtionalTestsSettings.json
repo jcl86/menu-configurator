@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "SqlServer": "Server=tcp:localhost,5433;Initial Catalog=Menu;User Id=sa;Password=Password12!;MultipleActiveResultSets=true"
+  }
+}

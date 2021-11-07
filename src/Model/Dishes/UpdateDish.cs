@@ -19,4 +19,5 @@ namespace MenuConfigurator.Model
         public string ImagePath { get; set; }
         public DishType Type { get; set; }
     }
+
 }

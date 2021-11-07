@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace MenuConfigurator.Api
 {
-    public static class Configuration
+    public static class ApiConfiguration
     {
         public static IServiceCollection ConfigureServices(IServiceCollection services, 
             IWebHostEnvironment environment, 

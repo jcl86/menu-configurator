@@ -28,7 +28,7 @@ namespace MenuConfigurator.Host
 
         public void ConfigureServices(IServiceCollection services)
         {
-            Api.Configuration
+            Api.ApiConfiguration
                 .ConfigureServices(services, environment, Configuration)
                 .AddSwaggerGen(c =>
                 {
@@ -43,7 +43,7 @@ namespace MenuConfigurator.Host
             var allowedOrigins = Configuration.GetSection("AllowedOrigins").Get<IEnumerable<string>>();
             Serilog.Log.Logger.Information("Origins: " + string.Join(", ", allowedOrigins));
 
-            Api.Configuration.Configure(app, host =>
+            Api.ApiConfiguration.Configure(app, host =>
             {
                 var builder = host
                     .UseCors(policy =>

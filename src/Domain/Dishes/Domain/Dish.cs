@@ -55,7 +55,7 @@ namespace MenuConfigurator.Domain
             SetIngredients(ingredients);
             SetNutritionalInfo(nutritionalInfo);
             SetAllergens(allergens);
-            SetImagePath(ImagePath);
+            SetImagePath(imagePath);
             SetType(type);
         }
     }
