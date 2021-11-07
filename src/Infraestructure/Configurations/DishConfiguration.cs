@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MenuConfigurator.Domain;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Shared = MenuConfigurator.Shared;
+using Shared = MenuConfigurator.Model;
 
 namespace MenuConfigurator.Infraestructure
 {
@@ -17,8 +17,6 @@ namespace MenuConfigurator.Infraestructure
             builder.Property(d => d.Allergens).HasMaxLength(Shared.DishMaxLengths.Allergens);
             builder.Property(d => d.NutritionalInfo).HasMaxLength(Shared.DishMaxLengths.NutritionalInfo);
             builder.Property(d => d.ImagePath).HasMaxLength(Shared.DishMaxLengths.ImagePath);
-
-            builder.HasOne(d => d.Days).WithMany(c => c.Dishes).HasForeignKey(d => d.CategoryId);
         }
     }
 }

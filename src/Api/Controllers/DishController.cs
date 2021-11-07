@@ -1,11 +1,11 @@
-using MenuConfigurator.Shared;
+using MenuConfigurator.Model;
 using Microsoft.AspNetCore.Mvc;
 using MenuConfigurator.Infraestructure;
 using System;
 
-namespace MenuConfigurator.Server.Controllers
+namespace MenuConfigurator.Api
 {
-    [ApiController]
+    [ApiController, Route("api/dishes")]
     public class DishController : ControllerBase
     {
         private readonly DishRepository dishrepository;
@@ -14,31 +14,23 @@ namespace MenuConfigurator.Server.Controllers
             this.dishrepository = dishrepository;
         }
 
-        [Route("api/dishes")]
-        public IActionResult GetMenu()
+        public IActionResult GetAll()
         {
             var dishes = dishrepository.GetAll();
             return Ok(dishes);
         }
 
-        [Route("api/dishes/{id}")]
-        public IActionResult GetDish(Guid id)
+        [Route("{dishId}")]
+        public IActionResult GetDish(Guid dishId)
         {
-            var dish = dishrepository.GetById(id);
+            var dish = dishrepository.GetById(dishId);
             return Ok(dish);
         }
-
-        public IActionResult Get(Guid)
-        {
-            var dishes = dishrepository.GetDishes(type);
-            return Ok(dishes);
-        }
-
-        //Create dish into database 
+ 
         [HttpPost]
         public ActionResult<Dish> Post(Dish dish)
         {
-            var dish = dishrepository.Create(dish);
+            //dishrepository.Add(dish);
             return CreatedAtAction(nameof(GetDish), new { id = dish.Id }, dish);
         }
 
@@ -46,14 +38,14 @@ namespace MenuConfigurator.Server.Controllers
         [HttpPatch]
         public IActionResult Put(Dish dish)
         {
-            var dish = dishrepository.Update(dish);
+            //var dish = dishrepository.Update(dish);
             return NoContent();
         }
 
         [HttpDelete]
         public IActionResult Delete(Dish dish)
         {
-            dishrepository.Delete(dish);
+            //dishrepository.Delete(dish);
             return NoContent();
         }
     }

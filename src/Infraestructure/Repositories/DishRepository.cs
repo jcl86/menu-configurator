@@ -2,17 +2,21 @@ using MenuConfigurator.Domain;
 using System.Linq;
 using System.Collections.Generic;
 using MenuConfigurator.Infraestructure;
+using System;
 
-public class DishRepository : Repository<Dish>
+namespace MenuConfigurator.Infraestructure
+{
+    public class DishRepository : Repository<Dish>
     {
         private readonly MenuContext _context;
 
         public DishRepository(MenuContext context) : base(context) { }
 
-        public Dish GetById(int id)
+        public Dish GetById(Guid dishId)
         {
-            return _context.Dishes.Find(id);
+            return _context.Dishes.Find(dishId);
         }
+
         public IEnumerable<Dish> GetAll()
         {
             return _context.Dishes.ToList();

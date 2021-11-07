@@ -1,6 +1,6 @@
 using System;
 
-namespace MenuConfigurator.Shared
+namespace MenuConfigurator.Model
 {
     public class Dish
     {

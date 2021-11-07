@@ -5,6 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\MenuConfigurator.Shared.csproj" />
+    <ProjectReference Include="..\Model\MenuConfigurator.Model.csproj" />
   </ItemGroup>
 </Project>

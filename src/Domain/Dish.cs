@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MenuConfigurator.Shared;
+using MenuConfigurator.Model;
 
 namespace MenuConfigurator.Domain
 {

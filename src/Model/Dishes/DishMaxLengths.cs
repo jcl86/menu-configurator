@@ -1,4 +1,4 @@
-namespace MenuConfigurator.Shared
+namespace MenuConfigurator.Model
 {
     public static class DishMaxLengths
     {

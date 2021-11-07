@@ -6,12 +6,8 @@
     <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NugetNetVersion)" />
     <PackageReference Update="Microsoft.Extensions.Configuration.UserSecrets" Version="$(NugetNetVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(NugetNetVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="$(WasmVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly" Version="$(WasmVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(WasmVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="$(WasmVersion)" />
-    <PackageReference Update="System.Net.Http.Json" Version="5.0.0" />
     <PackageReference Update="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Update="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup Label="ThirdParty">
