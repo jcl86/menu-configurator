@@ -5,6 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SupportedPlatform Include="browser" />
+    <ProjectReference Include="..\Shared\MenuConfigurator.Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup Label="Default project values">
+        <NetVersion>net5.0</NetVersion>
+        <LangVersion>9.0</LangVersion>
+        <NugetNetVersion>5.0.11</NugetNetVersion>
+        <WasmVersion>5.0.4</WasmVersion>
+    </PropertyGroup>
+</Project>

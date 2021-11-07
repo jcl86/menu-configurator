@@ -1,0 +1,8 @@
+<Project>
+    <Import Project="build/dependencies.props"/>
+    <PropertyGroup Label="Default Metadata">
+        <Authors>jcl86</Authors>
+        <PublishUrl></PublishUrl>
+        <RepositoryUrl>https://github.com/jcl86/menu-configurator.git</RepositoryUrl>
+    </PropertyGroup>
+</Project>
