@@ -1,17 +1,19 @@
+using System.Threading.Tasks;
+
 namespace MenuConfigurator.Infraestructure
 {
-    public class Repository<T> where T : class
+    public class Repository<T> : Domain.IRepository<T> where T : class
     {
-        private readonly MenuContext _context;
+        private readonly MenuContext context;
 
         public Repository(MenuContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
-        public void Add(T entity) => _context.Set<T>().Add(entity);
-        public void Delete(T entity) => _context.Set<T>().Remove(entity);
-        public void Update(T entity) => _context.Set<T>().Update(entity);
+        public async Task Add(T entity) => await context.Set<T>().AddAsync(entity);
+        public void Delete(T entity) => context.Set<T>().Remove(entity);
+        public void Update(T entity) => context.Set<T>().Update(entity);
 
     }
 

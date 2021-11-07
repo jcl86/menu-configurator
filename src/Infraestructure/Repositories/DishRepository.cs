@@ -6,7 +6,7 @@ using System;
 
 namespace MenuConfigurator.Infraestructure
 {
-    public class DishRepository : Repository<Dish>
+    public class DishRepository : Repository<Dish>, IDishRepository
     {
         private readonly MenuContext _context;
 
