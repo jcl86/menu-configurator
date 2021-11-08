@@ -4,7 +4,7 @@ export PATH="$HOME/.dotnet":$PATH
 
 dotnet restore
 
-cd src/Server
+cd src/Web
 dotnet build -c Debug
 dotnet run
 

@@ -1,37 +1,42 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">MenuConfigurator.Web</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+﻿<header class="text-white bg-red-700 body-font">
+    <div class="container mx-auto flex flex-wrap px-5 py-3 flex-col md:flex-row items-center">
+        <NavLink href="" class="cursor-pointer flex font-medium items-center mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 class="w-8 h-8" 
+                 viewBox="0 0 24 24" 
+                 stroke-width="2" 
+                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12zm0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3" />
+            </svg>
+            <span class="ml-3 text-xl">Meal configurator</span>
+        </NavLink>
+        <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <NavLink class="mr-5 cursor-pointer hover:text-red-100" href="dishes">
+                Platos
+            </NavLink>
+            <NavLink class="mr-5 cursor-pointer hover:text-red-100" href="other">
+                Second Link
+            </NavLink>
+        </nav>
+        <button class="inline-flex items-center bg-white 
+                py-2 px-3 focus:outline-none 
+                hover:bg-red-50 rounded mt-4 md:mt-0 text-red-900 font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 class="w-6 h-6" 
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+            </svg>
+            <span class="ml-1">
+            Acceder
+                </span>
+        </button>
+    </div>
+</header>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
 
 @code {
-    private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
 }

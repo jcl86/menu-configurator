@@ -1,3 +1,4 @@
+using MenuConfigurator.Web.Client;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,8 @@ namespace MenuConfigurator.Web
             builder.RootComponents.Add<App>("#app");
 
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5011") });
+            builder.Services.AddApiClient(builder.Configuration);
+            builder.Services.AddScoped<DishRepository>();
             await builder.Build().RunAsync();
         }
     }

@@ -1,0 +1,22 @@
+﻿@inject DishRepository repository
+
+@page "/dishes" 
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+    @foreach (var dish in dishes)
+    {
+        <DishCard Dish="dish" />
+    }
+</div>
+
+
+@code {
+
+    private IEnumerable<Dish> dishes = new List<Dish>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        dishes = await repository.GetAll();
+    }
+}
