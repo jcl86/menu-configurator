@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MenuConfigurator.Model
@@ -18,6 +19,29 @@ namespace MenuConfigurator.Model
         [StringLength(DishMaxLengths.ImagePath)]
         public string ImagePath { get; set; }
         public DishType Type { get; set; }
+    }
+
+    public class Order
+    {
+        public string Title { get; set; }
+
+        [StringLength(DishMaxLengths.Ingredients)]
+        public string Ingredients { get; set; }
+
+        [StringLength(DishMaxLengths.NutritionalInfo)]
+        public string NutritionalInfo { get; set; }
+        [StringLength(DishMaxLengths.Allergens)]
+        public string Allergens { get; set; }
+        [StringLength(DishMaxLengths.ImagePath)]
+        public string ImagePath { get; set; }
+        public DishType Type { get; set; }
+    }
+
+    public class OrderDetail
+    {
+        public Guid DishId { get; set; }
+
+        public int Quantity { get; set; }
     }
 
 }

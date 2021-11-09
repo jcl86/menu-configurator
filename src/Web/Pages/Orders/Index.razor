@@ -1,0 +1,216 @@
+﻿@page "/shop"
+@inject DishRepository repository
+
+@model.Type
+<div class="m-8">
+    <fieldset class="">
+        <legend class="sr-only">
+            Elige un tipo de plato
+        </legend>
+        <div class="flex space-x-4 justify-start">
+
+            @foreach (var type in Enums.GetEnumList<DishType>())
+            {
+                <!-- Active: "ring-2 ring-red-400" -->
+                <label class="group relative border rounded-md p-2 sm:px-8 md:py-3 flex items-center
+                 justify-center text-xs md:text-base font-semibold uppercase hover:bg-red-50
+                 focus:outline-none bg-white shadow-sm text-red-900 border-red-200 cursor-pointer
+               @(model.IsChecked(type) ? "ring-2 ring-red-400" : "") ">
+                    <input type="radio" name="@nameof(DishType)"
+                           id="@type"
+                           value="@type"
+                           @onchange="SelectionChanged"
+                           class="sr-only"
+                           checked=@(model.IsChecked(type)) />
+                    <span>
+
+                        @foreach (var (word, index) in type.Description().Split(" ").Select((x, index) => (x, index)))
+                        {
+                            @if (index == 0)
+                            {
+                                @word
+                                <span>
+                                    &nbsp;
+                                </span>
+
+                            }
+                            else
+                            {
+
+                                <span class="hidden md:inline">
+                                    @word
+                                </span>
+                            }
+                        }
+                    </span>
+                    &nbsp;
+                    <!--
+                    Checked: "border-red-500 border-2", Not Checked: "border border-transparent"
+                          -->
+                    <span class="absolute -inset-px rounded-md pointer-events-none
+                  @(model.IsChecked(type) ? "border-red-500 border-2" : "border border-transparent")" aria-hidden="true"></span>
+                </label>
+            }
+
+        </div>
+    </fieldset>
+
+    <fieldset class="mt-4">
+        <legend class="sr-only">
+            Filtra por categoría de plato
+        </legend>
+
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
+
+            @if (model.Type == DishType.First)
+            {
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasLegumes"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Legumes.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasPastaAndRice"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.PastaAndRice.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasVegetables"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Vegetables.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasSalads"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Salads.Description()
+                    </span>
+                </label>
+            }
+
+            @if (model.Type == DishType.Second)
+            {
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasMeat"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Meat.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasFish"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Fish.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasOtherSeconds"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.OtherSeconds.Description()
+                    </span>
+                </label>
+            }
+
+            @if (model.Type == DishType.Dessert)
+            {
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasFruit"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Fruit.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasYogurt"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.Yogurt.Description()
+                    </span>
+                </label>
+
+                <label class="ml-3 flex items-center space-x-2 text-red-900">
+                    <input id="filter-mobile-category-0"
+                           @bind="model.HasOtherDesserts"
+                           type="checkbox"
+                           class="h-4 w-4 border-red-500 rounded text-red-900 focus:ring-red-500">
+                    <span>
+                        @DishCategory.OtherDesserts.Description()
+                    </span>
+                </label>
+            }
+
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+    @foreach (var dish in model.Dishes)
+    {
+        <DishItem Dish="dish" OnBuyClicked="OnDishClicked" />
+    }
+</div>
+
+<div class="m-8 border">
+
+    @model.Cart.ToJson()
+</div>
+
+@code {
+    private IndexModel model = new IndexModel();
+
+    string selected = "";
+
+    protected async override Task OnInitializedAsync()
+    {
+        var dishes = await repository.GetAll();
+        model.Initialize(dishes);
+    }
+
+    void SelectionChanged(ChangeEventArgs args)
+    {
+        var selected = args.Value.ToString();
+        model.TypeChanged(selected);
+    }
+
+    void OnDishClicked(Dish dish)
+    {
+        model.AddToCart(dish);
+    }
+}

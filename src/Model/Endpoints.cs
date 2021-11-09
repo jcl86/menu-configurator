@@ -17,7 +17,4 @@ namespace MenuConfigurator.Model
             public static string Delete(Guid id) => $"{Base}/{id}";
         }
     }
-
-  
-
 }

@@ -5,13 +5,13 @@ namespace MenuConfigurator.Model
 {
     public enum DishType
     {
-        [Description("Primer plato")]
+        [Description("Primeros platos")]
         First,
 
-        [Description("Segundo plato")]
+        [Description("Segundos platos")]
         Second,
 
-        [Description("Postre")]
+        [Description("Postres")]
         Dessert
     }
 }

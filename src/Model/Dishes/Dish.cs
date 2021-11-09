@@ -11,5 +11,6 @@ namespace MenuConfigurator.Model
         public string Allergens { get; set; }
         public string ImagePath { get; set; }
         public DishType Type { get; set; }
+        public DishCategory Category { get; set; }
     }
 }
