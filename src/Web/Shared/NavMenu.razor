@@ -19,20 +19,33 @@
                 Second Link
             </NavLink>
         </nav>
-        <button class="inline-flex items-center bg-white
+        <div class="flex items-center">
+            <button class="inline-flex items-center bg-white
                 py-2 px-3 focus:outline-none
                 hover:bg-red-50 rounded mt-4 md:mt-0 text-red-900 font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 class="w-6 h-6"
-                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
-            </svg>
-            <span class="ml-1">
-                Acceder
-            </span>
-        </button>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-6 h-6"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                    <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                </svg>
+                <span class="ml-1">
+                    Acceder
+                </span>
+            </button>
+
+            <div class="ml-4 flow-root lg:ml-6 text-white">
+                <a href="#" class="group -m-2 p-2 flex items-center">
+                    <!-- Heroicon name: outline/shopping-bag -->
+                    <svg class="flex-shrink-0 h-6 w-6 group-hover:text-red-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="ml-2 text-lg font-medium group-hover:text-red-50">0</span>
+                    <span class="sr-only">items in cart, view bag</span>
+                </a>
+            </div>
+        </div>
     </div>
 </header>
 

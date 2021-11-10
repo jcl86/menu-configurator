@@ -189,11 +189,16 @@
 
 <div class="m-8 border">
 
-    @model.Cart.ToJson()
+    @cart.ToJson()
 </div>
+
+<CascadingValue Value="cart">
+    <Cart />
+</CascadingValue>
 
 @code {
     private IndexModel model = new IndexModel();
+    private CartModel cart = new CartModel();
 
     string selected = "";
 
@@ -211,6 +216,6 @@
 
     void OnDishClicked(Dish dish)
     {
-        model.AddToCart(dish);
+        cart.AddToCart(dish);
     }
 }

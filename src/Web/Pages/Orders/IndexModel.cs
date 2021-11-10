@@ -54,8 +54,5 @@ namespace MenuConfigurator.Web.Pages.Orders
                 ).ToList();
             }
         }
-
-        public List<Dish> Cart { get; private set; } = new List<Dish>();
-        public void AddToCart(Dish dish) => Cart.Add(dish);
     }
 }
